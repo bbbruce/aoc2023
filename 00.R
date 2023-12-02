@@ -71,20 +71,7 @@ apply_fx_local <- function(fun, arr, i, j, wdiag = TRUE) {
   reduce2(rows, cols, fun, .init = arr)
 }
 
-#' Apply fun locally
-#' 
-apply_fx_local <- function(fun, arr, i, j, wdiag = TRUE) {
-  rows <- c(i,     i,     i + 1, i - 1)
-  cols <- c(j - 1, j + 1, j,     j    )
-  
-  if(wdiag) {
-    rows <- c(rows, c(i + 1, i + 1, i - 1, i - 1))
-    cols <- c(cols, c(j - 1, j + 1, j - 1, j + 1))
-  }
-  reduce2(rows, cols, fun, .init = arr)
-}
-
-#' Apply function to array element with bounds checking
+#' Read array element with bounds checking
 #' 
 #' @param fun the function, should take three parameters: arr, i, j and return modified arr
 #' @param arr the array
