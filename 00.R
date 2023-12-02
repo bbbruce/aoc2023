@@ -1,4 +1,5 @@
 library(httr)
+library(yaml)
 library(tidyverse)
 
 # get cookie from dev tools in browser -> storage
@@ -8,7 +9,7 @@ get_aoc_input <- function(year, day) {
     out <- read_lines(fn)
   } else {
     url <- sprintf("https://adventofcode.com/%s/day/%s/input", year, day)
-    sc <- "53616c7465645f5fa3f23f6d0c662b375fd4daf248a23016b843d86435f2b7451339b3e91f001ba3b9af12c0909f25bc157196a17d5466cd52702079e3b634d8"
+    sc <- read_yaml("secrets.yml")$session_cookie
     GET(url, set_cookies(session = sc)) %>% 
       content %>%
       strsplit("\n") %>%
