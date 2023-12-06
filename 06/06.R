@@ -27,3 +27,17 @@ d %>%
     mutate(ww = win_ways(Time, Distance)) %>%
     pull(ww) %>%
     prod()
+
+d %>% 
+    pull(Time) %>%
+    paste(collapse = "") %>%
+    as.numeric() ->
+    new_time
+
+d %>% 
+    pull(Distance) %>%
+    paste(collapse = "") %>%
+    as.numeric() ->
+    new_dist
+
+win_ways(new_time, new_dist)
